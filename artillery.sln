@@ -1,0 +1,27 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "artillery", "artillery.csproj", "{56C9C68D-3CC2-4321-9B6F-F3A2FBE08B6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "artillery.Tests", "artillery.Tests\artillery.Tests.csproj", "{1C46153A-5AAA-4188-AD6F-1F7974DEF827}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		ExportDebug|Any CPU = ExportDebug|Any CPU
+		ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56C9C68D-3CC2-4321-9B6F-F3A2FBE08B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C9C68D-3CC2-4321-9B6F-F3A2FBE08B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C9C68D-3CC2-4321-9B6F-F3A2FBE08B6C}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{56C9C68D-3CC2-4321-9B6F-F3A2FBE08B6C}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{56C9C68D-3CC2-4321-9B6F-F3A2FBE08B6C}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{56C9C68D-3CC2-4321-9B6F-F3A2FBE08B6C}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{1C46153A-5AAA-4188-AD6F-1F7974DEF827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C46153A-5AAA-4188-AD6F-1F7974DEF827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C46153A-5AAA-4188-AD6F-1F7974DEF827}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C46153A-5AAA-4188-AD6F-1F7974DEF827}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{1C46153A-5AAA-4188-AD6F-1F7974DEF827}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C46153A-5AAA-4188-AD6F-1F7974DEF827}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal

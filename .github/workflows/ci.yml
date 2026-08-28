@@ -1,0 +1,119 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  format:
+    name: Format (CSharpier)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Check formatting
+        run: dotnet csharpier check . --no-msbuild-check
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      # 注意：本 solution 没有 "Release" 配置（只有 Debug/ExportDebug/ExportRelease），用 Debug 编译即可。
+      - name: Build
+        run: dotnet build -c Debug
+
+  test:
+    name: Unit Tests (xUnit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Run unit tests
+        run: dotnet test -c Debug
+
+  test-godot:
+    name: Integration Tests (GoDotTest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: '4.7.2'
+      - name: Restore
+        run: dotnet restore
+      - name: Import resources
+        run: godot --headless --path . --import
+      - name: Build C# solution
+        run: godot --headless --path . --build-solutions --quit
+      - name: Run integration tests
+        run: godot --headless --path . --audio-driver Dummy --run-tests --quit-on-finish
+
+  export-linux:
+    name: Export (Linux)
+    needs: [build, test, test-godot]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: '4.7.2'
+          include-templates: true
+      - name: Import resources
+        run: godot --headless --path . --import
+      - name: Export Linux
+        run: |
+          mkdir -p build/linux
+          godot --headless --path . --export-release "Linux" build/linux/artillery.x86_64
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artillery-linux
+          path: build/linux/
+
+  export-windows:
+    name: Export (Windows)
+    needs: [build, test, test-godot]
+    runs-on: windows-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: '4.7.2'
+          include-templates: true
+      - name: Import resources
+        run: godot --headless --path . --import
+      - name: Export Windows Desktop
+        run: |
+          mkdir -p build/windows
+          godot --headless --path . --export-release "Windows Desktop" build/windows/artillery.exe
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artillery-windows
+          path: build/windows/
