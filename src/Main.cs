@@ -7,7 +7,7 @@ using Chickensoft.GoDotTest;
 #endif
 
 // 入口场景：根据命令行参数决定「跑集成测试」还是「进入游戏」。
-// 游戏实际内容见 res://src/Game.tscn。
+// 游戏实际内容见 res://scenes/Game.tscn。
 public partial class Main : Node
 {
 #if RUN_TESTS
@@ -34,5 +34,5 @@ public partial class Main : Node
         _ = GoTest.RunTests(Assembly.GetExecutingAssembly(), this, _environment);
 #endif
 
-    private void RunScene() => GetTree().ChangeSceneToFile("res://src/Game.tscn");
+    private void RunScene() => GetTree().ChangeSceneToFile("res://scenes/Game.tscn");
 }

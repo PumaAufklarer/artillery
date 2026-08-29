@@ -27,7 +27,7 @@ public class GameTest : TestClass
     [Test]
     public async Task CanLoadGameScene()
     {
-        var game = await _fixture.LoadAndAddScene<Node3D>("res://src/Game.tscn");
+        var game = await _fixture.LoadAndAddScene<Node2D>("res://scenes/Game.tscn");
         game.ShouldNotBeNull();
         ((string)game.Name).ShouldBe("Game");
     }

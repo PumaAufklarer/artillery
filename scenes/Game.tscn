@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/View/GameController.cs" id="1_game"]
+[ext_resource type="Script" path="res://src/View/MapView.cs" id="2_map"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_game")
+
+[node name="Map" type="Node2D" parent="."]
+script = ExtResource("2_map")
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="CounterLayer" type="CanvasLayer" parent="."]
+
+[node name="Counters" type="Node2D" parent="CounterLayer"]
+
+[node name="Hud" type="CanvasLayer" parent="."]

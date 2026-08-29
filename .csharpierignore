@@ -1,3 +1,8 @@
 .godot/
 bin/
 obj/
+# Godot 的 C# 扫描会把该非 Godot 工程按 tab 重排，交给 Godot 缩进、CSharpier 跳过
+artillery.Tests/
+
+# 第三方 vendored 代码，保持与上游一致
+src/QFramework/

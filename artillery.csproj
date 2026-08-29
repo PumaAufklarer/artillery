@@ -5,6 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <!-- 某些 NuGet 包在 Godot 下需要本地程序集拷贝才能被运行时加载 -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <!-- 集成测试只在 Debug/ExportDebug 下参与编译；Release/ExportRelease 排除，避免随游戏发布 -->
